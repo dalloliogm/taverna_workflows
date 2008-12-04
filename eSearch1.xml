@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:655a8273-164a-49cf-a5ee-0afdd3689d5c" author="" title="eSearch1" />
+  <s:processor name="run_eSearch">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://eutils.ncbi.nlm.nih.gov/entrez/eutils/soap/eutils.wsdl</s:wsdl>
+      <s:operation>run_eSearch</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="run_eSearch_input">
+    <s:defaults>
+      <s:default name="db">gene</s:default>
+      <s:default name="term">cox2[GENE NAME]</s:default>
+    </s:defaults>
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.XMLInputSplitter
+      <s:extensions>
+        <s:complextype optional="false" unbounded="false" typename="eSearchRequest" name="parameters" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}eSearchRequest">
+          <s:elements>
+            <s:basetype optional="true" unbounded="false" typename="string" name="db" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="term" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="WebEnv" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="QueryKey" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="usehistory" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="tool" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="email" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="field" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="reldate" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="mindate" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="maxdate" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="datetype" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="RetStart" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="RetMax" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="rettype" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="sort" qname="{http://www.w3.org/2001/XMLSchema}string" />
+          </s:elements>
+        </s:complextype>
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="run_eSearch_output">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.XMLOutputSplitter
+      <s:extensions>
+        <s:complextype optional="false" unbounded="false" typename="eSearchResult" name="parameters" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}eSearchResult">
+          <s:elements>
+            <s:basetype optional="true" unbounded="false" typename="string" name="ERROR" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="Count" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="RetMax" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="RetStart" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="QueryKey" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="WebEnv" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:arraytype optional="true" unbounded="false" typename="IdListType" name="IdList" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}IdListType">
+              <s:elementtype>
+                <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.w3.org/2001/XMLSchema}string" />
+              </s:elementtype>
+            </s:arraytype>
+            <s:arraytype optional="true" unbounded="false" typename="TranslationSetType" name="TranslationSet" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TranslationSetType">
+              <s:elementtype>
+                <s:complextype optional="false" unbounded="false" typename="TranslationType" name="" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TranslationType">
+                  <s:elements>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="From" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                    <s:basetype optional="false" unbounded="false" typename="string" name="To" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  </s:elements>
+                </s:complextype>
+              </s:elementtype>
+            </s:arraytype>
+            <s:complextype optional="true" unbounded="false" typename="TranslationStackType" name="TranslationStack" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TranslationStackType">
+              <s:elements>
+                <s:complextype optional="true" unbounded="false" typename="TermSetType" name="TermSet" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TermSetType">
+                  <s:elements>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="Term" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                    <s:basetype optional="false" unbounded="false" typename="string" name="Field" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                    <s:basetype optional="false" unbounded="false" typename="string" name="Count" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                    <s:basetype optional="false" unbounded="false" typename="string" name="Explode" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  </s:elements>
+                </s:complextype>
+                <s:basetype optional="true" unbounded="false" typename="string" name="OP" qname="{http://www.w3.org/2001/XMLSchema}string" />
+              </s:elements>
+            </s:complextype>
+            <s:basetype optional="true" unbounded="false" typename="string" name="QueryTranslation" qname="{http://www.w3.org/2001/XMLSchema}string" />
+            <s:complextype optional="true" unbounded="false" typename="ErrorListType" name="ErrorList" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}ErrorListType">
+              <s:elements>
+                <s:arraytype optional="true" unbounded="true" typename="PhraseNotFound" name="PhraseNotFound" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}PhraseNotFound[0,unbounded]">
+                  <s:elementtype>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  </s:elementtype>
+                </s:arraytype>
+                <s:arraytype optional="true" unbounded="true" typename="FieldNotFound" name="FieldNotFound" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}FieldNotFound[0,unbounded]">
+                  <s:elementtype>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  </s:elementtype>
+                </s:arraytype>
+              </s:elements>
+            </s:complextype>
+            <s:complextype optional="true" unbounded="false" typename="WarningListType" name="WarningList" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}WarningListType">
+              <s:elements>
+                <s:arraytype optional="true" unbounded="true" typename="PhraseIgnored" name="PhraseIgnored" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}PhraseIgnored[0,unbounded]">
+                  <s:elementtype>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  </s:elementtype>
+                </s:arraytype>
+                <s:arraytype optional="true" unbounded="true" typename="QuotedPhraseNotFound" name="QuotedPhraseNotFound" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}QuotedPhraseNotFound[0,unbounded]">
+                  <s:elementtype>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  </s:elementtype>
+                </s:arraytype>
+                <s:arraytype optional="true" unbounded="true" typename="OutputMessage" name="OutputMessage" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}OutputMessage[0,unbounded]">
+                  <s:elementtype>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  </s:elementtype>
+                </s:arraytype>
+              </s:elements>
+            </s:complextype>
+          </s:elements>
+        </s:complextype>
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="email" boring="true">
+    <s:stringconstant>dalloliogm@fastwebnet.it</s:stringconstant>
+  </s:processor>
+  <s:processor name="String_Constant" boring="true">
+    <s:stringconstant>xml</s:stringconstant>
+  </s:processor>
+  <s:processor name="Merge_string_list_to_string">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:link source="database" sink="run_eSearch_input:db" />
+  <s:link source="Merge_string_list_to_string:concatenated" sink="Id_List" />
+  <s:link source="String_Constant:value" sink="run_eSearch_input:rettype" />
+  <s:link source="run_eSearch:parameters" sink="run_eSearch_output:input" />
+  <s:link source="run_eSearch_input:output" sink="run_eSearch:parameters" />
+  <s:link source="terms" sink="run_eSearch_input:term" />
+  <s:link source="email:value" sink="run_eSearch_input:email" />
+  <s:link source="run_eSearch_output:IdList" sink="Merge_string_list_to_string:stringlist" />
+  <s:link source="run_eSearch:parameters" sink="output_xml" />
+  <s:link source="run_eSearch_output:QueryTranslation" sink="QueryTranslation" />
+  <s:source name="database" />
+  <s:source name="terms" />
+  <s:sink name="output_xml" />
+  <s:sink name="Id_List" />
+  <s:sink name="QueryTranslation" />
+</s:scufl>
+
