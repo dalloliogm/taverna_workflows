@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:227516dc-2a07-45fd-84de-5c87a4c51d96" author="" title="eSearch_eFetch2" />
+  <s:processor name="run_eSearch">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://eutils.ncbi.nlm.nih.gov/entrez/eutils/soap/eutils.wsdl</s:wsdl>
+      <s:operation>run_eSearch</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="parametersXML">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.XMLInputSplitter
+      <s:extensions>
+        <s:complextype optional="false" unbounded="false" typename="eSearchRequest" name="parameters" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}eSearchRequest">
+          <s:elements>
+            <s:basetype optional="true" unbounded="false" typename="string" name="db" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;db" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="term" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;term" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="WebEnv" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;WebEnv" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="QueryKey" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;QueryKey" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="usehistory" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;usehistory" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="tool" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;tool" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="email" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;email" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="field" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;field" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="reldate" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;reldate" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="mindate" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;mindate" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="maxdate" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;maxdate" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="datetype" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;datetype" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="RetStart" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;RetStart" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="RetMax" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;RetMax" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="rettype" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;rettype" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="sort" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchRequest&gt;sort" />
+          </s:elements>
+        </s:complextype>
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="parametersXML1">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.XMLOutputSplitter
+      <s:extensions>
+        <s:complextype optional="false" unbounded="false" typename="eSearchResult" name="parameters" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}eSearchResult">
+          <s:elements>
+            <s:basetype optional="true" unbounded="false" typename="string" name="ERROR" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;ERROR" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="Count" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;Count" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="RetMax" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;RetMax" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="RetStart" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;RetStart" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="QueryKey" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;QueryKey" />
+            <s:basetype optional="true" unbounded="false" typename="string" name="WebEnv" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;WebEnv" />
+            <s:arraytype optional="true" unbounded="false" wrapped="false" typename="IdListType" name="IdList" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;IdList">
+              <s:elementtype>
+                <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}Id" />
+              </s:elementtype>
+            </s:arraytype>
+            <s:arraytype optional="true" unbounded="false" wrapped="true" typename="TranslationSetType" name="TranslationSet" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;TranslationSet">
+              <s:elementtype>
+                <s:complextype optional="false" unbounded="false" typename="TranslationType" name="" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TranslationType">
+                  <s:elements>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="From" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TranslationType&gt;From" />
+                    <s:basetype optional="false" unbounded="false" typename="string" name="To" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TranslationType&gt;To" />
+                  </s:elements>
+                </s:complextype>
+              </s:elementtype>
+            </s:arraytype>
+            <s:complextype optional="true" unbounded="false" typename="TranslationStackType" name="TranslationStack" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;TranslationStack">
+              <s:elements>
+                <s:complextype optional="true" unbounded="false" typename="TermSetType" name="TermSet" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TranslationStackType&gt;TermSet">
+                  <s:elements>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="Term" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TermSetType&gt;Term" />
+                    <s:basetype optional="false" unbounded="false" typename="string" name="Field" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TermSetType&gt;Field" />
+                    <s:basetype optional="false" unbounded="false" typename="string" name="Count" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TermSetType&gt;Count" />
+                    <s:basetype optional="false" unbounded="false" typename="string" name="Explode" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TermSetType&gt;Explode" />
+                  </s:elements>
+                </s:complextype>
+                <s:basetype optional="true" unbounded="false" typename="string" name="OP" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}TranslationStackType&gt;OP" />
+              </s:elements>
+            </s:complextype>
+            <s:basetype optional="true" unbounded="false" typename="string" name="QueryTranslation" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;QueryTranslation" />
+            <s:complextype optional="true" unbounded="false" typename="ErrorListType" name="ErrorList" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;ErrorList">
+              <s:elements>
+                <s:arraytype optional="true" unbounded="true" wrapped="false" typename="PhraseNotFound" name="PhraseNotFound" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}ErrorListType&gt;PhraseNotFound">
+                  <s:elementtype>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}PhraseNotFound" />
+                  </s:elementtype>
+                </s:arraytype>
+                <s:arraytype optional="true" unbounded="true" wrapped="false" typename="FieldNotFound" name="FieldNotFound" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}ErrorListType&gt;FieldNotFound">
+                  <s:elementtype>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}FieldNotFound" />
+                  </s:elementtype>
+                </s:arraytype>
+              </s:elements>
+            </s:complextype>
+            <s:complextype optional="true" unbounded="false" typename="WarningListType" name="WarningList" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}&gt;eSearchResult&gt;WarningList">
+              <s:elements>
+                <s:arraytype optional="true" unbounded="true" wrapped="false" typename="PhraseIgnored" name="PhraseIgnored" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}WarningListType&gt;PhraseIgnored">
+                  <s:elementtype>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}PhraseIgnored" />
+                  </s:elementtype>
+                </s:arraytype>
+                <s:arraytype optional="true" unbounded="true" wrapped="false" typename="QuotedPhraseNotFound" name="QuotedPhraseNotFound" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}WarningListType&gt;QuotedPhraseNotFound">
+                  <s:elementtype>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}QuotedPhraseNotFound" />
+                  </s:elementtype>
+                </s:arraytype>
+                <s:arraytype optional="true" unbounded="true" wrapped="false" typename="OutputMessage" name="OutputMessage" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}WarningListType&gt;OutputMessage">
+                  <s:elementtype>
+                    <s:basetype optional="false" unbounded="false" typename="string" name="" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}OutputMessage" />
+                  </s:elementtype>
+                </s:arraytype>
+              </s:elements>
+            </s:complextype>
+          </s:elements>
+        </s:complextype>
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="String_Constant" boring="true">
+    <s:stringconstant>True</s:stringconstant>
+  </s:processor>
+  <s:link source="String_Constant:value" sink="parametersXML:usehistory" />
+  <s:link source="parametersXML1:IdList" sink="IdList" />
+  <s:link source="parametersXML1:QueryKey" sink="QueryKey" />
+  <s:link source="parametersXML1:WebEnv" sink="WebEnv" />
+  <s:link source="parametersXML:output" sink="run_eSearch:parameters" />
+  <s:link source="query word" sink="parametersXML:term" />
+  <s:link source="run_eSearch:parameters" sink="parametersXML1:input" />
+  <s:source name="query word">
+    <s:metadata>
+      <s:mimeTypes>
+        <s:mimeType>text/xml</s:mimeType>
+      </s:mimeTypes>
+    </s:metadata>
+  </s:source>
+  <s:sink name="IdList" />
+  <s:sink name="QueryKey" />
+  <s:sink name="WebEnv" />
+</s:scufl>
+
